@@ -13,6 +13,8 @@ immo-eliza-ml/
 │   └── listings_clean_duplicate_final.csv
 │
 ├── model/
+│   ├── model_linear.pkl
+│   ├── model_tree.pkl
 │   └── model_xgboost.pkl
 │
 ├── src/
