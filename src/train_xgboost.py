@@ -16,9 +16,15 @@ def train_xgb_model(df):
 
     df = clean_data(df)
     df = features_engineering(df)
+    #print(df.columns.tolist()) 
 
 
-    X = df[FEATURES["surface_col"] + FEATURES["binary_col"] + FEATURES["count_col"] + FEATURES["distance_col"]+ FEATURES["ordinal_col"]+ FEATURES["geographical_col"]]
+    
+    categorical_cols = []
+    if "categorical_col" in FEATURES:
+        categorical_cols = [col for col in FEATURES["categorical_col"] if col in df.columns]
+
+    X = df[FEATURES["surface_col"] + FEATURES["binary_col"] + FEATURES["count_col"] + FEATURES["distance_col"]+ FEATURES["ordinal_col"]+ FEATURES["geographical_col"] + FEATURES.get("categorical_col",[])]
     y = df[TARGET]
 
     X_train, X_test, y_train, y_test = train_test_split(
@@ -26,6 +32,8 @@ def train_xgb_model(df):
     )
 
     num_cols = X.columns.tolist()
+    categorical_cols = [col for col in FEATURES.get("categorical_col", []) if col in X.columns]
+
 
     pipeline = build_pipeline(
       
@@ -39,6 +47,7 @@ def train_xgb_model(df):
                             random_state=42
                             ),
         num_cols=num_cols,
+        cat_cols = categorical_cols,
         scale=False
     )
 
