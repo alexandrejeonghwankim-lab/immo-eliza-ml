@@ -52,7 +52,7 @@ Finally, I implemented an advanced gradient boosting algorithm (train_xgboost.py
 
     CV R2 scores: [0.80165517 0.80618298 0.82002449 0.79629767 0.82127404]
 
-    Mean CV R2: 0.8090
+    Mean CV R2: 0.8091
 
 # 3. Model Performance Evaluation
 
@@ -69,7 +69,7 @@ Three distinct regression models are tested to find the best between complexity 
 ## Cross Validation Metrics (XGBoost only)
 
 * 5-Fold CV $R^2$ Scores: [0.80165517 0.80618298 0.82002449 0.79629767 0.82127404]
-* Mean CV $R^2$: 0.8091
+* Mean CV $R^2$: 0.8090
 
 # 4, Performance Comaprison & Why XGBoost was selected
 
@@ -77,7 +77,7 @@ Analyzing the journey, Test 1 to Test 3, XGBoost was overwhelmingly selected for
 
 1. **Drastic Error Reduction**: Moving from Linear Regression/Decision Trees to XGBoost sliced our average prediction error (MAE) down from ~€92.9k to €66k, saving nearly €27,000 in pricing inaccuracy per property.
 2. **Overfitting Control**: The Decision Tree suffered severe overfitting—performing well on training data (0.8280) but collapsing on real test data (0.6157). XGBoost successfully maintained generalized power, holding an outstanding 0.8006 Test $R^2$ score.
-3. **Proven Reliability**: The 5-fold Cross-Validation verified that XGBoost's high accuracy wasn’t a random fluke. Its performance remained tightly uniform around an 80.91% average across multiple random sub-segments of the dataset.
+3. **Proven Reliability**: The 5-fold Cross-Validation verified that XGBoost's high accuracy wasn’t a random fluke. Its performance remained tightly uniform around an 80.90% average across multiple random sub-segments of the dataset.
 
 # 5. Business Translation
 
