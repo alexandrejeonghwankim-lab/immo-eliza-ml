@@ -10,6 +10,9 @@ from src.config import FEATURES, TARGET
 from src.preprocessing import clean_data, features_engineering
 from src.pipeline import build_pipeline
 from sklearn.model_selection import KFold
+from sklearn.metrics import mean_squared_error
+import numpy as np
+
 
 
 def train_xgb_model(df):
@@ -69,6 +72,10 @@ def train_xgb_model(df):
         scoring = "r2"
     )
 
+    rmse_train = np.sqrt(mean_squared_error(y_train, y_train_pred))
+    rmse_test = np.sqrt(mean_squared_error(y_test, y_pred))
+
+
     print("r2_train", r2_score(y_train, y_train_pred))
     print("MAE_train:", mean_absolute_error(y_train, y_train_pred))
 
@@ -79,7 +86,14 @@ def train_xgb_model(df):
     print("CV R2 scores:", cv_scores)
     print("Mean CV R2:", cv_scores.mean())
 
+    
+    print("RMSE_train:", rmse_train)
+    print("RMSE:", rmse_test)
+
+
     joblib.dump(pipeline, "model/model_xgboost.pkl")
+
+    
 
     return pipeline
 
