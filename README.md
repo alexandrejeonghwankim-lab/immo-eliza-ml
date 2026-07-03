@@ -44,15 +44,15 @@ Next, I tested a tree-based approach to capture non-linear market patterns. This
 
 Finally, I implemented an advanced gradient boosting algorithm (train_xgboost.py) leveraging native missing value handling and extensive hyperparameter tuning. A 5-fold cross-validation strategy is introduced to prove model stability across different market data splits.
 
-    r2_train: 0.9205 | MAE_train: €47,236.56
+    r2_train: 0.9202 | MAE_train: €47,417.96
 
-    R2 (Test): 0.8008
+    R2 (Test): 0.8006
 
-    MAE: €65,792.56
+    MAE: €66,031.84
 
-    CV R2 scores: [0.7990, 0.8030, 0.8180, 0.7926, 0.8184]
+    CV R2 scores: [0.80165517 0.80618298 0.82002449 0.79629767 0.82127404]
 
-    Mean CV R2: 0.8062
+    Mean CV R2: 0.8090
 
 # 3. Model Performance Evaluation
 
@@ -62,22 +62,22 @@ Three distinct regression models are tested to find the best between complexity 
 
 | Metric                    | Linear Regression | Decision Tree | XGBoost (Final)       |
 | ------------------------- | ----------------- | ------------- | --------------------- |
-| Training R² (r2_train)   | 0.6607            | 0.8280        | **0.9205**      |
-| Testing R² (R²)         | 0.6346            | 0.6157        | **0.8008**      |
-| Mean Absolute Error (MAE) | €92,935.45       | €92,890.44   | **€65,792.56** |
+| Training R² (r2_train)   | 0.6607            | 0.8280        | **0.9202**      |
+| Testing R² (R²)         | 0.6346            | 0.6157        | **0.8006**      |
+| Mean Absolute Error (MAE) | €92,935.45       | €92,890.44   | **€66,031.84** |
 
 ## Cross Validation Metrics (XGBoost only)
 
-* 5-Fold CV $R^2$ Scores: [0.7990, 0.8030, 0.8180, 0.7926, 0.8184]
-* Mean CV $R^2$: 0.8062
+* 5-Fold CV $R^2$ Scores: [0.80165517 0.80618298 0.82002449 0.79629767 0.82127404]
+* Mean CV $R^2$: 0.8091
 
 # 4, Performance Comaprison & Why XGBoost was selected
 
 Analyzing the journey, Test 1 to Test 3, XGBoost was overwhelmingly selected for production deployment:
 
-1. **Drastic Error Reduction**: Moving from Linear Regression/Decision Trees to XGBoost sliced our average prediction error (MAE) down from ~€92.9k to €65.7k, saving nearly €27,000 in pricing inaccuracy per property.
-2. **Overfitting Control**: The Decision Tree suffered severe overfitting—performing well on training data (0.8280) but collapsing on real test data (0.6157). XGBoost successfully maintained generalized power, holding an outstanding 0.8008 Test $R^2$ score.
-3. **Proven Reliability**: The 5-fold Cross-Validation verified that XGBoost's high accuracy wasn’t a random fluke. Its performance remained tightly uniform around an 80.62% average across multiple random sub-segments of the dataset.
+1. **Drastic Error Reduction**: Moving from Linear Regression/Decision Trees to XGBoost sliced our average prediction error (MAE) down from ~€92.9k to €66k, saving nearly €27,000 in pricing inaccuracy per property.
+2. **Overfitting Control**: The Decision Tree suffered severe overfitting—performing well on training data (0.8280) but collapsing on real test data (0.6157). XGBoost successfully maintained generalized power, holding an outstanding 0.8006 Test $R^2$ score.
+3. **Proven Reliability**: The 5-fold Cross-Validation verified that XGBoost's high accuracy wasn’t a random fluke. Its performance remained tightly uniform around an 80.91% average across multiple random sub-segments of the dataset.
 
 # 5. Business Translation
 
@@ -87,12 +87,12 @@ For Business stakeholders, this is what the performance metrics actually mean fo
 R^2$ (R-Squared) & r2_train**
 
 * Data Science Term: The proportion of variance in the dependent variable that is predictable from the independent variables.
-* Business Interpretation: Think of this as our "Market Trends Explanation Score". Our final test score of 0.8008 means our model successfully decodes and explains 80.1% of the reasons why property prices fluctuate in Belgium. The r2_train (92.1%) simply shows how well the model memorized historical files during training.
+* Business Interpretation: Think of this as our "Market Trends Explanation Score". Our final test score of 0.8006 means our model successfully decodes and explains 80.1% of the reasons why property prices fluctuate in Belgium. The r2_train (92.02%) simply shows how well the model memorized historical files during training.
 
 **MAE(Mean Absolute Error)**
 
 * Data Science Term: The average of the absolute differences between forecasted targets and true targets.
-* Business Interpretation: This is our "Average Mispricing Window". On average, when our model stamps a price valuation on a property, its estimate is off by €65,792.56. Shrinking this error margin down from the initial €92.9k baseline dramatically insulates the business from costly over-valuations and under-valuations.
+* Business Interpretation: This is our "Average Mispricing Window". On average, when our model stamps a price valuation on a property, its estimate is off by €66,031.84. Shrinking this error margin down from the initial €92.9k baseline dramatically insulates the business from costly over-valuations and under-valuations.
 
 ***CV $R^2$ Scores & Mean CV $R^2$***
 
