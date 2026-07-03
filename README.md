@@ -2,6 +2,32 @@
 
 An end-to-end Machine Learning pipeline developed to predict real estate property prices in Belgium. This project progresses from data cleaning and advanced feature engineering to evaluating multiple regression models, ultimately selecting the most robust model for production.
 
+
+## Repo structure
+This structure ensures a clean separation between data, model, pipeline, and training scripts, making the project reusable and maintainable.
+
+immo-eliza-ml/
+│
+├── data/
+│   └── listings_clean_duplicate_final.csv
+│
+├── model/
+│   └── model_xgboost.pkl
+│
+├── src/
+│   ├── __init__.py
+│   ├── config.py
+│   ├── preprocessing.py
+│   ├── pipeline.py
+│   ├── train_xgboost.py
+│   ├── train_linear.py
+│   └── train_dt.py
+│
+├── main.py
+├── requirements.txt
+└── README.md
+
+
 ## 1. How the Process works
 
 The project is built around a reusable, robust, and automated machine learning pipeline:
