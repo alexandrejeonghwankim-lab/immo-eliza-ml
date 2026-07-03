@@ -11,7 +11,6 @@ FEATURES ={
         "category",
         "terrace_orientation",
         "province",
-        "postal_code"
     ],
 
     "count_col" : [
