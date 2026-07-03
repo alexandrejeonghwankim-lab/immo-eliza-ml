@@ -5,7 +5,7 @@ An end-to-end Machine Learning pipeline developed to predict real estate propert
 
 ## Repo structure
 This structure ensures a clean separation between data, model, pipeline, and training scripts, making the project reusable and maintainable.
-
+---
 immo-eliza-ml/
 │
 ├── data/
@@ -26,7 +26,7 @@ immo-eliza-ml/
 ├── main.py
 ├── requirements.txt
 └── README.md
-
+---
 
 ## 1. How the Process works
 
